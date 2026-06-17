@@ -185,38 +185,79 @@ h2.serif em{font-style:italic; color:var(--gold-soft); font-weight:400;}
 
 /* ─── HERO ─── */
 .hero{
-  min-height:100svh; background:var(--ink) center/cover no-repeat; display:flex; align-items:center;
+  min-height:100svh; background:var(--ink); display:flex; align-items:center;
   position:relative; overflow:hidden; padding-top:76px;
 }
+.hero-media{position:absolute; inset:0; overflow:hidden; z-index:0; transition:transform .3s ease-out; transform:translate(calc(var(--mx,0) * 10px), calc(var(--my,0) * 8px));}
+.hero-bg{
+  position:absolute; inset:-5%; background:var(--ink) center/cover no-repeat;
+  animation:heroKenBurns 28s ease-in-out infinite alternate;
+}
+@keyframes heroKenBurns{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.12) translate(-1.5%,-1%);}}
+.hero-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(11,11,13,.5) 0%, rgba(11,11,13,.32) 38%, rgba(11,11,13,.78) 100%),
+    radial-gradient(circle at 50% 105%, rgba(0,0,0,.4), transparent 60%);
+}
 .hero-mesh{
-  position:absolute; inset:-10%; pointer-events:none; opacity:.55;
+  position:absolute; inset:-10%; pointer-events:none; opacity:.6; z-index:1;
   background:
-    radial-gradient(circle at 18% 22%, rgba(var(--gold-rgb),.16), transparent 42%),
-    radial-gradient(circle at 82% 70%, rgba(var(--gold-rgb),.10), transparent 46%),
+    radial-gradient(circle at 18% 22%, rgba(var(--gold-rgb),.18), transparent 42%),
+    radial-gradient(circle at 82% 70%, rgba(var(--gold-rgb),.12), transparent 46%),
     radial-gradient(circle at 50% 100%, rgba(255,255,255,.04), transparent 50%);
-  animation:meshDrift 22s ease-in-out infinite alternate;
+  animation:meshDrift 16s ease-in-out infinite alternate;
 }
 @keyframes meshDrift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-2%,1.5%) scale(1.04);}}
 .hero-grid{
-  position:absolute; inset:0; pointer-events:none;
+  position:absolute; inset:0; pointer-events:none; z-index:1;
   background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
   background-size:56px 56px;
   mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), transparent 85%);
 }
+.hero-particles{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:1;}
+.hero-particles span{
+  position:absolute; bottom:-12px; width:3px; height:3px; border-radius:50%;
+  background:var(--gold-soft); opacity:0;
+  box-shadow:0 0 6px 1px rgba(var(--gold-rgb),.65);
+  animation:particleRise linear infinite;
+}
+@keyframes particleRise{
+  0%{transform:translateY(0) translateX(0); opacity:0;}
+  10%{opacity:.7;}
+  85%{opacity:.45;}
+  100%{transform:translateY(-100vh) translateX(16px); opacity:0;}
+}
 .hero-inner{position:relative; z-index:2; width:100%; max-width:1240px; margin:0 auto; padding:64px 48px 80px;}
+@keyframes heroRise{0%{opacity:0; transform:translateY(22px);}100%{opacity:1; transform:translateY(0);}}
+.hero-inner > *{opacity:0; animation:heroRise .9s var(--ease) forwards;}
+.hero-inner > *:nth-child(1){animation-delay:.1s;}
+.hero-inner > *:nth-child(2){animation-delay:.26s;}
+.hero-inner > *:nth-child(3){animation-delay:.46s;}
+.hero-inner > *:nth-child(4){animation-delay:.64s;}
+.hero-inner > *:nth-child(5){animation-delay:.82s;}
 .hero-eyebrow{
   display:inline-flex; align-items:center; gap:10px;
   font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
   color:var(--ash); margin-bottom:26px;
 }
-.hero-eyebrow::before{content:''; display:block; width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(var(--gold-rgb),.18);}
+.hero-eyebrow::before{
+  content:''; display:block; width:8px; height:8px; border-radius:50%; background:var(--gold);
+  box-shadow:0 0 0 4px rgba(var(--gold-rgb),.18); animation:eyebrowPulse 2.6s ease-in-out infinite;
+}
+@keyframes eyebrowPulse{0%,100%{box-shadow:0 0 0 4px rgba(var(--gold-rgb),.18);}50%{box-shadow:0 0 0 7px rgba(var(--gold-rgb),.3);}}
 .hero h1{
   font-family:var(--serif); font-size:clamp(42px,7vw,90px);
   font-weight:400; line-height:1.06; letter-spacing:-.02em;
   color:#fff; margin-bottom:26px; max-width:840px;
 }
-.hero h1 em{font-style:italic; color:var(--gold-soft); font-weight:400;}
+.hero h1 em{
+  font-style:italic; font-weight:400;
+  background:linear-gradient(100deg, var(--gold-deep) 0%, var(--gold-soft) 30%, #fff 50%, var(--gold-soft) 70%, var(--gold-deep) 100%);
+  background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:emShimmer 6s linear infinite;
+}
+@keyframes emShimmer{0%{background-position:0% 50%;}100%{background-position:220% 50%;}}
 .hero-sub{font-size:16px; color:var(--ash); line-height:1.85; max-width:520px; margin-bottom:42px;}
 .hero-btns{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:68px;}
 .hero-stats{display:flex; gap:0; border-left:1px solid var(--line);}
@@ -564,9 +605,24 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
 <main id="main">
 
 <!-- ═══ HERO ═══ -->
-<header class="hero" style="background-image:url('assets/placeholders/hero-bg.jpg')">
+<header class="hero" id="hero">
+  <div class="hero-media" aria-hidden="true">
+    <div class="hero-bg" style="background-image:url('assets/placeholders/hero-bg.jpg')"></div>
+    <div class="hero-overlay"></div>
+  </div>
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
+  <div class="hero-particles" aria-hidden="true">
+    <span style="left:6%; animation-duration:11s; animation-delay:0s;"></span>
+    <span style="left:16%; animation-duration:14s; animation-delay:2.5s;"></span>
+    <span style="left:27%; animation-duration:9.5s; animation-delay:1.2s;"></span>
+    <span style="left:38%; animation-duration:13s; animation-delay:4.8s;"></span>
+    <span style="left:49%; animation-duration:10.5s; animation-delay:.6s;"></span>
+    <span style="left:61%; animation-duration:15s; animation-delay:3.4s;"></span>
+    <span style="left:72%; animation-duration:11.5s; animation-delay:5.6s;"></span>
+    <span style="left:83%; animation-duration:13.5s; animation-delay:2s;"></span>
+    <span style="left:91%; animation-duration:9s; animation-delay:4.1s;"></span>
+  </div>
   <div class="hero-inner">
     <div class="hero-eyebrow">Riyadh, Kingdom of Saudi Arabia</div>
     <h1>Crafting <em>Extraordinary</em><br>Exhibitions &amp; Conferences</h1>
@@ -1236,6 +1292,18 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
   }, { threshold: 0.3 });
   const heroEl = document.querySelector('.hero');
   if (heroEl) ctObs.observe(heroEl);
+
+  // Hero parallax on pointer move (desktop only, respects reduced motion)
+  if (heroEl && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    const heroMedia = heroEl.querySelector('.hero-media');
+    heroEl.addEventListener('mousemove', e => {
+      const r = heroEl.getBoundingClientRect();
+      const mx = (e.clientX - r.left) / r.width - 0.5;
+      const my = (e.clientY - r.top) / r.height - 0.5;
+      heroMedia.style.setProperty('--mx', mx.toFixed(3));
+      heroMedia.style.setProperty('--my', my.toFixed(3));
+    });
+  }
 
   // Stat bar animation
   const barObs = new IntersectionObserver(entries => {
