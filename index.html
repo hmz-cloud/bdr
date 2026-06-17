@@ -185,7 +185,7 @@ h2.serif em{font-style:italic; color:var(--gold-soft); font-weight:400;}
 
 /* ─── HERO ─── */
 .hero{
-  min-height:100svh; background:var(--ink); display:flex; align-items:center;
+  min-height:100svh; background:var(--ink) center/cover no-repeat; display:flex; align-items:center;
   position:relative; overflow:hidden; padding-top:76px;
 }
 .hero-mesh{
@@ -252,10 +252,10 @@ h2.serif em{font-style:italic; color:var(--gold-soft); font-weight:400;}
 .feat p{font-size:12.5px; color:var(--text-faint); line-height:1.6;}
 .about-img-col{display:grid; grid-template-columns:1fr 1fr; gap:10px; position:relative;}
 .aimg{
-  background:var(--ink); height:210px; border:1px solid var(--ink-4);
+  background:var(--ink) center/cover no-repeat; height:210px; border:1px solid var(--ink-4);
   display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
 }
-.aimg .ic{width:42px; height:42px; color:var(--gold); opacity:.55; stroke-width:1.2;}
+.aimg .ic{width:42px; height:42px; color:var(--gold); opacity:.7; stroke-width:1.2;}
 .aimg:nth-child(2){margin-top:28px;}
 .aimg:nth-child(3){margin-top:-28px;}
 .aimg-lbl{
@@ -348,7 +348,7 @@ h2.serif em{font-style:italic; color:var(--gold-soft); font-weight:400;}
 .port-filter.active{background:var(--ink); color:var(--gold-soft); border-color:var(--ink);}
 .port-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
 .port-item{
-  background:var(--ink); height:280px; position:relative; overflow:hidden;
+  background:var(--ink) center/cover no-repeat; height:280px; position:relative; overflow:hidden;
   display:flex; align-items:flex-end; cursor:pointer; transition:opacity .35s, transform .35s;
 }
 .port-item.hide{display:none;}
@@ -564,7 +564,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
 <main id="main">
 
 <!-- ═══ HERO ═══ -->
-<header class="hero">
+<header class="hero" style="background-image:url('assets/placeholders/hero-bg.jpg')">
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
@@ -631,19 +631,19 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
         </div>
       </div>
       <div class="about-img-col">
-        <div class="aimg">
+        <div class="aimg" style="background-image:url('assets/placeholders/about-photography.jpg')">
           <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="1.5"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.5-2h5L16 6"/></svg>
           <div class="aimg-lbl">Event Photography</div>
         </div>
-        <div class="aimg">
+        <div class="aimg" style="background-image:url('assets/placeholders/about-av.jpg')">
           <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 16v5"/></svg>
           <div class="aimg-lbl">AV Production</div>
         </div>
-        <div class="aimg">
+        <div class="aimg" style="background-image:url('assets/placeholders/about-booths.jpg')">
           <svg class="ic" viewBox="0 0 24 24"><path d="M4 21V9.5L12 4l8 5.5V21"/><rect x="9.5" y="13" width="5" height="8"/></svg>
           <div class="aimg-lbl">Exhibition Booths</div>
         </div>
-        <div class="aimg">
+        <div class="aimg" style="background-image:url('assets/placeholders/about-corporate.jpg')">
           <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
           <div class="aimg-lbl">Corporate Events</div>
         </div>
@@ -880,7 +880,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
       <button class="port-filter" data-filter="Private">Private</button>
     </div>
     <div class="port-grid rv" id="port-grid">
-      <div class="port-item" data-cat="Exhibition">
+      <div class="port-item" data-cat="Exhibition" style="background-image:url('assets/placeholders/port-ricec.jpg')">
         <div class="port-icon"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="13" rx="1.5"/><path d="M8 7l1.8-3h4.4L16 7"/></svg></div>
         <div class="port-info">
           <div class="port-cat">International Exhibition</div>
@@ -888,7 +888,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
           <p>Riyadh International Convention Center</p>
         </div>
       </div>
-      <div class="port-item" data-cat="Government">
+      <div class="port-item" data-cat="Government" style="background-image:url('assets/placeholders/port-judicial.jpg')">
         <div class="port-icon"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2 3 7v2h18V7l-9-5Z"/><path d="M5 11v9M10 11v9M14 11v9M19 11v9M3 22h18"/></svg></div>
         <div class="port-info">
           <div class="port-cat">Government Event</div>
@@ -896,7 +896,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
           <p>High-level government conference, Riyadh</p>
         </div>
       </div>
-      <div class="port-item" data-cat="Corporate">
+      <div class="port-item" data-cat="Corporate" style="background-image:url('assets/placeholders/port-aramco.jpg')">
         <div class="port-icon"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10" opacity=".5"/></svg></div>
         <div class="port-info">
           <div class="port-cat">Corporate Event</div>
@@ -904,7 +904,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
           <p>Executive corporate gathering</p>
         </div>
       </div>
-      <div class="port-item" data-cat="Exhibition">
+      <div class="port-item" data-cat="Exhibition" style="background-image:url('assets/placeholders/port-gami.jpg')">
         <div class="port-icon"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2l3.5 7L22 9.5l-5 4.8L18.5 22 12 18l-6.5 4 1.5-7.7L2 9.5 8.5 9 12 2Z"/></svg></div>
         <div class="port-info">
           <div class="port-cat">Exhibition Booth</div>
@@ -912,7 +912,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
           <p>Custom fabricated exhibition stand</p>
         </div>
       </div>
-      <div class="port-item" data-cat="Luxury">
+      <div class="port-item" data-cat="Luxury" style="background-image:url('assets/placeholders/port-rollsroyce.jpg')">
         <div class="port-icon"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5 12h14M12 4a13 13 0 0 1 0 16 13 13 0 0 1 0-16Z" opacity=".5"/></svg></div>
         <div class="port-info">
           <div class="port-cat">Luxury Product Launch</div>
@@ -920,7 +920,7 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
           <p>Exclusive automotive launch event</p>
         </div>
       </div>
-      <div class="port-item" data-cat="Private">
+      <div class="port-item" data-cat="Private" style="background-image:url('assets/placeholders/port-gala.jpg')">
         <div class="port-icon"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2c0 4-4 5-4 9a4 4 0 0 0 8 0c0-4-4-5-4-9Z"/><path d="M6 22c0-3 2.5-5 6-5s6 2 6 5"/></svg></div>
         <div class="port-info">
           <div class="port-cat">Private Event</div>
