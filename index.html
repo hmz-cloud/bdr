@@ -228,6 +228,52 @@ h2.serif em{font-style:italic; color:var(--gold-soft); font-weight:400;}
   85%{opacity:.45;}
   100%{transform:translateY(-100vh) translateX(16px); opacity:0;}
 }
+
+/* ─── HERO LIGHTING RIG (stage truss with sweeping moving-head beams) ─── */
+.hero-rig{position:absolute; top:78px; left:0; right:0; height:380px; z-index:1; overflow:hidden; pointer-events:none;}
+.rig-bar{
+  position:absolute; top:0; left:3%; right:3%; height:4px; border-radius:2px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.16) 6%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.16) 94%, transparent);
+  box-shadow:0 1px 0 rgba(0,0,0,.4);
+}
+.rig-beam{position:absolute; top:0; width:0; height:0; animation-duration:7.5s;}
+.rig-beam::before{
+  content:''; position:absolute; top:-5px; left:-7px; width:14px; height:10px;
+  background:var(--ink-4); border:1px solid rgba(255,255,255,.18); border-radius:2px 2px 4px 4px; z-index:1;
+}
+.rig-beam::after{
+  content:''; position:absolute; top:3px; left:-110px; width:220px; height:360px;
+  background:linear-gradient(to bottom, rgba(var(--beam-rgb,var(--gold-rgb)),.26), rgba(var(--beam-rgb,var(--gold-rgb)),.07) 50%, transparent 78%);
+  clip-path:polygon(48.5% 0%, 51.5% 0%, 100% 100%, 0% 100%);
+  transform-origin:top center; mix-blend-mode:screen;
+  animation:beamSwing 7.5s ease-in-out infinite;
+  animation-duration:inherit;
+}
+@keyframes beamSwing{0%,100%{transform:rotate(-10deg);}50%{transform:rotate(10deg);}}
+@media (max-width:840px){.hero-rig{display:none;}}
+
+/* ─── HERO LIVE AV EQUALISER WIDGET ─── */
+.hero-eq{
+  position:absolute; right:48px; bottom:128px; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:9px;
+  padding:12px 16px 10px; border:1px solid var(--line); border-radius:3px;
+  background:rgba(11,11,13,.5); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.eq-bars{display:flex; align-items:flex-end; gap:4px; height:26px;}
+.eq-bars span{
+  width:3px; border-radius:1px; transform-origin:bottom;
+  background:linear-gradient(to top, var(--gold-deep), var(--gold-soft));
+  animation:eqBounce ease-in-out infinite;
+}
+.eq-bars span:nth-child(1){height:40%; animation-duration:.8s; animation-delay:0s;}
+.eq-bars span:nth-child(2){height:75%; animation-duration:.95s; animation-delay:.1s;}
+.eq-bars span:nth-child(3){height:100%; animation-duration:.7s; animation-delay:.2s;}
+.eq-bars span:nth-child(4){height:58%; animation-duration:1.05s; animation-delay:.05s;}
+.eq-bars span:nth-child(5){height:85%; animation-duration:.85s; animation-delay:.15s;}
+@keyframes eqBounce{0%,100%{transform:scaleY(.35);}50%{transform:scaleY(1);}}
+.eq-lbl{font-size:8.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ash-2); white-space:nowrap;}
+@media (max-width:1024px){.hero-eq{display:none;}}
+
 .hero-inner{position:relative; z-index:2; width:100%; max-width:1240px; margin:0 auto; padding:64px 48px 80px;}
 @keyframes heroRise{0%{opacity:0; transform:translateY(22px);}100%{opacity:1; transform:translateY(0);}}
 .hero-inner > *{opacity:0; animation:heroRise .9s var(--ease) forwards;}
@@ -622,6 +668,18 @@ footer{background:var(--ink); border-top:1px solid var(--line); padding:64px 0 2
     <span style="left:72%; animation-duration:11.5s; animation-delay:5.6s;"></span>
     <span style="left:83%; animation-duration:13.5s; animation-delay:2s;"></span>
     <span style="left:91%; animation-duration:9s; animation-delay:4.1s;"></span>
+  </div>
+  <div class="hero-rig" aria-hidden="true">
+    <div class="rig-bar"></div>
+    <div class="rig-beam" style="left:10%; animation-delay:0s;"></div>
+    <div class="rig-beam" style="left:28%; --beam-rgb:150,185,255; animation-delay:1.6s; animation-duration:8.5s;"></div>
+    <div class="rig-beam" style="left:50%; animation-delay:.8s; animation-duration:6.5s;"></div>
+    <div class="rig-beam" style="left:72%; --beam-rgb:150,185,255; animation-delay:2.4s; animation-duration:9s;"></div>
+    <div class="rig-beam" style="left:90%; animation-delay:1.2s;"></div>
+  </div>
+  <div class="hero-eq" aria-hidden="true">
+    <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="eq-lbl">AV Systems Live</div>
   </div>
   <div class="hero-inner">
     <div class="hero-eyebrow">Riyadh, Kingdom of Saudi Arabia</div>
